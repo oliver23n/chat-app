@@ -38,6 +38,11 @@ const renderMessages = ()=>{
     } )
 }
 
+const logout = ()=>{
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    window.location.reload();
+}
 if(!chat) return 'Loading...';
 return(
     <div className="chat-feed">
@@ -46,7 +51,11 @@ return(
                 {chat?.title}
             </div>
             <div className="chat-subtitle">
-                {chat.people.map((person) => `${person.person.username}`)}
+                {chat.people.map((person) => ` ${person.person.username}`)}
+            </div>
+            <div>
+                <button className="button logout" 
+                onClick={logout}>LOGOUT</button>
             </div>
         </div>
         {renderMessages()}
