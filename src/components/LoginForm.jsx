@@ -5,9 +5,10 @@ const LoginForm = () => {
 
     const [username, setUsername] = useState('');
     const[password, setPassword] =useState('');
+    const [error, setError] = useState('');
 
     const handleSubmit = async (e) =>{
-        e.preventDeafult();
+        e.preventDefault();
 
         const authObject = {
             'Project-ID':  'fa7eb8fe-f782-4a73-bf15-f8ce4b99cb72',
@@ -19,9 +20,9 @@ const LoginForm = () => {
 
             localStorage.setItem('username', username);
             localStorage.setItem('password', password);
-            window.location.reload();
+            window.location.assign('/');
         }catch(error){
-
+            setError('Wrong Credentials');
         }
 
     }
@@ -39,6 +40,7 @@ const LoginForm = () => {
                         </button>
                     </div>
                 </form>
+                <h2 className="error">{error}</h2>
             </div>
         </div>    
     )
